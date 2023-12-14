@@ -7,3 +7,11 @@ export const notFoundError = (resource) => {
   }
 }
 
+export const emailAlReadyRegistratedError = () => {
+  throw {
+      httpStatus: 409,//conflicto
+      code: 'EMAIL_ALREADY_REGISTERED',
+      message: 'El email ya se encuentra registrado'
+  }
+}
+

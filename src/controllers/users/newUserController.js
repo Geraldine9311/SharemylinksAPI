@@ -5,11 +5,11 @@ import insertUserModel from '../../models/users/insertUserModel.js';
 const newUserController = async (req,res,next) => {
     try {
 
-        const { username, email, password } = req.body;
+        const {email, password } = req.body;
         
         const registrationCode = randomstring.generate(10);
 
-        await insertUserModel(username, email, password, registrationCode);
+        await insertUserModel(email, password, registrationCode);
 
         res.send({
             status: 'ok',

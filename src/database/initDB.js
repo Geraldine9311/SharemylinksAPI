@@ -9,12 +9,12 @@ const initDB = async () => {
     console.log('initDB completado.');
 
     await pool.query('USE Sharemylinks');
-    await pool.query(
-      'ALTER TABLE linksVotes DROP FOREIGN KEY linksVotes_ibfk_2'
-    );
-    await pool.query(
-      'ALTER TABLE linksVotes ADD FOREIGN KEY (link_id) REFERENCES links(id) ON DELETE CASCADE'
-    );
+   // await pool.query(
+   //   'ALTER TABLE linksVotes DROP FOREIGN KEY linksVotes_ibfk_2'
+   // );
+   // await pool.query(
+   //   'ALTER TABLE linksVotes ADD FOREIGN KEY (link_id) REFERENCES links(id) ON DELETE CASCADE'
+   // );
 
     //Verificar si el orden de borrado de tablas es correcto
 

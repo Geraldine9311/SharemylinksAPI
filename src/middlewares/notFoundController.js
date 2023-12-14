@@ -1,7 +1,7 @@
-import { notFoundError } from "../services/errorservice.js";
+import { notFoundError } from '../services/errorService.js';
 
-const notFound = (req,res,next) => {
-        next(notFoundError('ruta'));
-}
+const notFound = (req, res, next) => {
+  next(notFoundError('ruta'));
+};
 
 export default notFound;

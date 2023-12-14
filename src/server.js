@@ -3,8 +3,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import { notFoundController, errorController } from './middlewares/index.js';
 import routes from './routes/index.js';
+import { notFoundController, errorController } from './middlewares/index.js';
+
 const server = express();
 
 dotenv.config();
