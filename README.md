@@ -13,14 +13,36 @@ Acceder
 Editar perfil (Nombre,Email,Biografia,Foto)
 
 -LINKS
-Url
-Titulo
-Descripción
+Crear un link
 Borrar un enlace publicado por el usuario
 Votar un enlace de otro usuario
 
+ENDPOINTS
+
+users
+router.post('/users/register', newUserController);
+router.get('/users/validate/:registrationCode', validateUserController)
+router.get('/users', authUserController);
+router.get('/users/:user_id', userExistController, getUserProfileController);
+router.post('/users/login', loginUserController);
 
 
-Tecnologia utilizada (Mysql, postman)
+links
+router.get('/links',authUserController, listLinksController);
+router.post('/links',authUserController,newLinkController);
+router.post('/links/:link_id/votes', authUserController,voteLinkController);
+router.delete('/links/:link_id',authUserController,deleteLinkController);
+
+
+
+Tecnologia utilizada (Mysql, postman, Node.js, github)
 
 Algo a destacar
+Hasta ahora tenemos el registro,el acceso,posteo de link y borrado,además el voto.
+En versiones futuras querríamos implementar la interfaz de usuario y la modificación del perfil
+
+
+
+
+
+

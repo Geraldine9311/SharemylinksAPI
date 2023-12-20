@@ -2,7 +2,7 @@ import insertVoteModel from '../../models/links/insertVoteModel.js';
 
 const voteLinkController = async (req, res, next) => {
     try {
-        const user_id = req.user.id;
+        const id = req.user.id;
         const { link_id } = req.params;
         const { value } = req.body;
 
@@ -10,7 +10,7 @@ const voteLinkController = async (req, res, next) => {
             return res.status(400).json({ message: 'El voto debe estar entre 1 y 5.' });
         }
 
-        await insertVoteModel(user_id, link_id, value);
+        await insertVoteModel(id, link_id, value);
 
         res.status(200).json({ message: 'Voto registrado con éxito' });
     } catch (error) {

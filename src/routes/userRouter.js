@@ -5,7 +5,8 @@ const router = express.Router();
 import {
      newUserController, 
      loginUserController,
-     validateUserController
+     validateUserController,
+
      } from '../controllers/users/index.js';
 
      import authUserController from '../middlewares/authUserController.js';
@@ -13,15 +14,14 @@ import {
 
 
 //comprobamos que nos funciona users
-router.get('/users', authUserController, (req, res) => 
-res.send('Soy el userRouter, ruta válida'));
+//router.get('/users', authUserController, (req, res) => 
+//res.send('Soy el userRouter, ruta válida'));
+router.get('/users', authUserController);
+router.get('/users/:user_id', userExistController);
+router.get('/users/validate/:registrationCode', validateUserController)
+
 
 router.post('/users/register', newUserController);
-router.get('/users/validate/:registrationCode', validateUserController)
-router.get('/users', authUserController);
-
-
-router.get('/users/:user_id', userExistController);
 router.post('/users/login', loginUserController);
 
 

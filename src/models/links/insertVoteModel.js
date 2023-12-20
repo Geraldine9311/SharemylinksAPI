@@ -7,7 +7,7 @@ const insertVoteModel = async (value, link_id, user_id) => {
 
     const [votes] = await pool.query(
         `
-            SELECT id FROM linksVotes
+            SELECT id FROM links
             WHERE user_id = ? AND link_id=?
         `,
         [link_id, user_id]
