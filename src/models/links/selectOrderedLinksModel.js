@@ -3,7 +3,11 @@ import getPool from '../../database/getPool.js';
 const selectOrderedLinksModel = async (orderBy, orderDirection = 'DESC') => {
     const pool = await getPool();
 
-    let query = 'SELECT l.*, COALESCE(AVG(v.value), 0) AS average_vote FROM links l LEFT JOIN linksVotes v ON l.id = v.link_id GROUP BY l.id';
+    let query = 
+    `SELECT l.*, COALESCE(AVG(v.value), 0) AS average_vote
+     FROM links l 
+     LEFT JOIN linksVotes v ON l.id = v.link_id 
+     GROUP BY l.id`;
 
     // Verificar y construir la cláusula ORDER BY
     if (orderBy === 'votes') {

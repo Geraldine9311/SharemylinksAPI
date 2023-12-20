@@ -10,7 +10,7 @@ import {
      } from '../controllers/users/index.js';
 
      import authUserController from '../middlewares/authUserController.js';
-     import userExistController from '../middlewares/usersExistController.js';
+     import userExistController from '../middlewares/userExistController.js';
 
 
 //comprobamos que nos funciona users

@@ -16,12 +16,8 @@ from '../controllers/links/index.js';
 //router.get('/links', (req, res) => res.send('Soy el linksRouter, ruta válida'));
 router.get('/links', authUserController);
 router.get('/links/ordered', listOrderedLinksController, authUserController);
-
-
 router.post('/links',authUserController,newLinkController);
 router.post('/links/:link_id/votes', authUserController,voteLinkController);
-
-
 router.delete('/links/:link_id',authUserController,deleteLinkController);
 
 export default router;

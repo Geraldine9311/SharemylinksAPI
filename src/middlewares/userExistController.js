@@ -1,7 +1,7 @@
 import getPool from '../database/getPool.js';
 import { notFoundError } from '../services/errorService.js';
 
-const userExistsController = async (req, res, next) => {
+const userExistController = async (req, res, next) => {
   try {
     const pool = await getPool();
 
@@ -26,4 +26,4 @@ const userExistsController = async (req, res, next) => {
   }
 };
 
-export default userExistsController;
+export default userExistController;
