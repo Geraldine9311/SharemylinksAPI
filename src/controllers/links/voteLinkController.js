@@ -7,12 +7,12 @@ const voteLinkController = async (req, res, next) => {
         const { value } = req.body;
 
         if (value < 1 || value > 5) {
-            return res.status(400).json({ message: 'El voto debe estar entre 1 y 5.' });
+            return res.status(400).json({ message: `Por favor, vota del 1 al 5.` });
         }
 
-        await insertVoteModel(id, link_id, value);
+        const voteresult = await insertVoteModel(id, link_id, value);
 
-        res.status(200).json({ message: 'Voto registrado con éxito' });
+        res.status(200).json({ message: `Gracias!! Tu voto se ha registrado con éxito', ${voteresult}`});
     } catch (error) {
         next(error);
     }
