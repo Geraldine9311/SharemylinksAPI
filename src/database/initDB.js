@@ -6,7 +6,7 @@ const initDB = async () => {
 
     console.log('Iniciando initDB...');
 
-    await pool.query('USE Sharemylinks');
+    await pool.query('USE ');
 
     try {
       pool = await getPool(); //  getPool para obtener la conexión
