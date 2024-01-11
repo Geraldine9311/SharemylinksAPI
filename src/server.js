@@ -16,7 +16,7 @@ server.get('/', (req, res) => {
 });
 server.use(morgan('dev'));
 server.use(express.json()); // todo lo que viene como json lo tranforma como objeto
-server.use(cors()); //acepta pedidos desde cualquier IP
+server.use(cors()); //acepta peticiones desde cualquier IP
 
 //middleware de rutas 
 server.use(routes); //enrutador de enrutadores links y users
