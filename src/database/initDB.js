@@ -6,7 +6,7 @@ const initDB = async () => {
 
     console.log('Iniciando initDB...');
 
-    await pool.query('USE ');
+    await pool.query('USE ${process.env.MYSQL_DATABASE}');
 
     try {
       pool = await getPool(); //  getPool para obtener la conexión
@@ -59,7 +59,7 @@ const initDB = async () => {
       console.error('Error al crear las tablas:', error);
     }
   } catch (error) {
-    console.error('Error en initDB:', error);
+    console.error('Error en initDB:', error.message);
   } finally {
     console.log(`Tablas creadas con éxito!`);
     process.exit();

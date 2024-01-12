@@ -22,6 +22,7 @@ const getPool = async () => {
     return pool;
   } catch (error) {
     console.log(error);
+    throw new Error ("Error con la conexion al db (${error.message})")
   }
 };
 
