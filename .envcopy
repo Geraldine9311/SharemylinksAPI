@@ -1,16 +1,12 @@
-MYSQL_HOST=localhost
-MYSQL_USER=root
-MYSQL_PASSWORD=merida
-MYSQL_DATABASE=Sharemylinks
+MYSQL_HOST=    
+MYSQL_USER=
+MYSQL_PASSWORD=
+MYSQL_DATABASE=
 
 
-SMTP_HOST=smtp-relay.brevo.com
-SMTP_PORT=587
-SMTP_USER=lusitania02@hotmail.es
-SMTP_PASS=P8LFGvEHCqId7TSr
+SMTP_HOST=
+SMTP_PORT=
+SMTP_USER=
+SMTP_PASS=
 
-SECRET=codigosecreto
-
-PORT= 3001
-
-/*cuanto más largo sea esa variable mayor seguridad*/
+SECRET

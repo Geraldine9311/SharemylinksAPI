@@ -6,7 +6,7 @@ const initDB = async () => {
 
     console.log('Iniciando initDB...');
 
-    await pool.query('USE ${process.env.MYSQL_DATABASE}');
+    await pool.query(`USE ${process.env.MYSQL_DATABASE}`);
 
     try {
       pool = await getPool(); //  getPool para obtener la conexión
