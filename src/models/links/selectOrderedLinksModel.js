@@ -4,9 +4,10 @@ const selectOrderedLinksModel = async (orderBy, orderDirection = 'DESC') => {
     const pool = await getPool();
 
     let query = 
-    `SELECT l.*, COALESCE(AVG(v.value), 0) AS average_vote
+    `SELECT l.*, COALESCE(AVG(v.value), 0) AS average_vote,user.email
      FROM links l 
      LEFT JOIN linksVotes v ON l.id = v.link_id 
+     LEFT JOIN users
      GROUP BY l.id`;
 
     // Verificar y construir la cláusula ORDER BY
