@@ -13,7 +13,7 @@ const insertVoteModel = async (user_id, link_id, value) => {
         [user_id, link_id]
     );
 
-    if(votes.length) voteAlreadyExistsError();
+    if(votes.length>=1) voteAlreadyExistsError();
 
     //insertamos el voto 
     await pool.query(

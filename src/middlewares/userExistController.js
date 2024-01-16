@@ -9,7 +9,7 @@ const userExistController = async (req, res, next) => {
     console.log(user_id);
     const [user] = await pool.query(
       `
-                SELECT id FROM users WHERE id = ?
+                SELECT id FROM users WHERE id = ? AND active=true;
             `,
       [user_id]
     );

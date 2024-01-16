@@ -6,6 +6,7 @@ import {
      newUserController, 
      loginUserController,
      validateUserController,
+     getUserProfileController,
 
      } from '../controllers/users/index.js';
 
@@ -16,8 +17,10 @@ import {
 //comprobamos que nos funciona users
 //router.get('/users', authUserController, (req, res) => 
 //res.send('Soy el userRouter, ruta válida'));
-router.get('/users', authUserController);
-router.get('/users/:user_id', userExistController);
+//router.get('/users', authUserController);
+
+// endpoint que devuelve el detalle del usuario user_id
+router.get('/users/:user_id', authUserController, userExistController, getUserProfileController);
 router.get('/users/validate/:registrationCode', validateUserController)
 
 

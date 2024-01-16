@@ -10,13 +10,14 @@ deleteLinkController,
 listOrderedLinksController
 } 
 from '../controllers/links/index.js';
+import linkExistsController from '../middlewares/linkExistsController.js';
 
 //comprobamos que nos funciona links
 
 //router.get('/links', (req, res) => res.send('Soy el linksRouter, ruta válida'));
-router.get('/links', authUserController,listOrderedLinksController);
+router.get('/links',listOrderedLinksController);
 router.post('/links',authUserController,newLinkController);
-router.post('/links/:link_id/votes', authUserController,voteLinkController);
+router.post('/links/:link_id/votes', authUserController, linkExistsController, voteLinkController);
 router.delete('/links/:link_id',authUserController,deleteLinkController);
 
 export default router;

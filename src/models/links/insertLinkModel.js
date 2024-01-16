@@ -1,6 +1,7 @@
 import getPool from '../../database/getPool.js';
 
 const insertLinkModel = async (user_id, url, title, description) => {
+  
   const pool = await getPool();
 
   // Prepara y ejecuta la consulta SQL para insertar un nuevo link

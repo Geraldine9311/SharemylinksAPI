@@ -29,7 +29,7 @@ const insertUserModel = async (email, password, registrationCode) => {
             <a href="http://localhost:3001/users/validate/${registrationCode}">Activar mi cuenta</a> 
     ` //insertamos html
 
-    await sendMailUtil(email,emailSubject,emailBody);
+    //await sendMailUtil(email,emailSubject,emailBody);
 
 
     const hashedPassword = await bcrypt.hash(password,10); 
