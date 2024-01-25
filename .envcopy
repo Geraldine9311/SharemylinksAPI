@@ -9,8 +9,5 @@ SMTP_PORT=
 SMTP_USER=
 SMTP_PASS=
 
-SECRET=
-
-PORT= 3001
-
-/*cuanto más largo sea esa variable mayor seguridad*/
+SECRET
+PORT=3000

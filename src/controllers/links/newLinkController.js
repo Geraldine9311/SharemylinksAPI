@@ -3,10 +3,10 @@ import insertLinkModel from '../../models/links/insertLinkModel.js';
 const newLinkController = async (req, res, next) => {
   try {
     
-    const { user_id,url, title, description } = req.body;
+    const { url, title, description } = req.body;
 
     // Comprueba que todos los campos necesarios estén presentes
-    if (!user_id || !url || !title || !description) {
+    if (!url || !title || !description) {
       return res
         .status(400)
         .send({
@@ -15,7 +15,7 @@ const newLinkController = async (req, res, next) => {
     }
 
     // Inserta el link en la base de datos
-    const link_id = await insertLinkModel(user_id, url, title, description);
+    const link_id = await insertLinkModel(req.user.id, url, title, description);
 
     // Envía respuesta con el ID del link insertado
     res.send({
@@ -24,7 +24,6 @@ const newLinkController = async (req, res, next) => {
       data: {
         link: {
           id: link_id,
-          user_id,
           url,
           title,
           description,

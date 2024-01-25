@@ -12,7 +12,10 @@ const voteLinkController = async (req, res, next) => {
 
         const voteresult = await insertVoteModel(id, link_id, value);
 
-        res.status(200).json({ message: `Gracias!! Tu voto se ha registrado con éxito', ${voteresult}`});
+        res.status(200).json({ 
+            message: `Gracias!! Tu voto se ha registrado con éxito`,
+            data: voteresult
+        });
     } catch (error) {
         next(error);
     }

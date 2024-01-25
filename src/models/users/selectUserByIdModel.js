@@ -5,13 +5,9 @@ const selectUserByIdModel = async (user_id) => {
   //Buscamos el usuario por su id
   const [user] = await pool.query(
     `
-
             SELECT id, email, created_at
-
             FROM users
-
             WHERE id = ?
-
         `,
 
     [user_id]
