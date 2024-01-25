@@ -21,7 +21,7 @@ import {
 
 // endpoint que devuelve el detalle del usuario user_id
 router.get('/users/:user_id', authUserController, userExistController, getUserProfileController);
-router.get('/users/validate/:registrationCode', validateUserController)
+router.put('/users/validate/:registrationCode', validateUserController)
 
 
 router.post('/users/register', newUserController);
