@@ -19,17 +19,17 @@ const insertUserModel = async (email, password, registrationCode) => {
         emailAlReadyRegistratedError();
     }
 
-    const emailSubject = 'Activa tu usuario';
+    const emailSubject = 'Activa tu usuario SHARE MY LINKS🔗';
 
     const emailBody = `
             !Bienvenid@!
 
             Gracias por registrarte en Share my links. Para activar tu cuenta haz click en el siguiente enlace:
 
-            <a href="http://localhost:3001/users/validate/${registrationCode}">Activar mi cuenta</a> 
+            <a href="${process.env.URL_FRONT}/activate/${registrationCode}">Activar mi cuenta</a> 
     ` //insertamos html
 
-    //await sendMailUtil(email,emailSubject,emailBody);
+    await sendMailUtil(email,emailSubject,emailBody);
 
 
     const hashedPassword = await bcrypt.hash(password,10); 
