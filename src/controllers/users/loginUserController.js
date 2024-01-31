@@ -31,7 +31,7 @@ const loginUserController = async (req, res, next) => {
     //generamos el token para usuario
 
     const tokenInfo = {
-      id: user.id
+      id: user.id,
     };
 
     const token = jwt.sign(tokenInfo, process.env.SECRET, {

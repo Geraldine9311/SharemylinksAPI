@@ -1,0 +1,36 @@
+import getPool from '../../database/getPool.js';
+
+const changePassController = async (req, res) => {
+  try {
+    const { code, newPassword, email } = req.body;
+    const pool = await getPool();
+
+    // Verificar que el código de recuperación sea válido
+    const [user] = await pool.query(
+      'SELECT * FROM users WHERE recoverPassCode = ? AND email = ?',
+      [code, email]
+    );
+
+    if (!user) {
+      console.log('Código de recuperación no válido');
+      return res
+        .status(400)
+        .json({ error: 'Código de recuperación no válido' });
+    }
+
+    // Actualizar la contraseña del usuario en la base de datos
+    await pool.query(
+      'UPDATE users SET password = ? WHERE recoverPassCode = ? AND email = ?',
+      [newPassword, code, email]
+    );
+
+    // Éxito al cambiar la contraseña
+    console.log('Contraseña cambiada con éxito');
+    res.status(200).json({ message: 'Contraseña cambiada con éxito' });
+  } catch (error) {
+    console.error('Error al cambiar la contraseña:', error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
+export default changePassController;

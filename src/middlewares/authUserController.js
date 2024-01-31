@@ -27,33 +27,3 @@ const authUserController = (req, res, next) => {
 };
 
 export default authUserController;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
