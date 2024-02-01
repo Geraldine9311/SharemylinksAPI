@@ -2,46 +2,43 @@ import bcrypt from 'bcrypt';
 import getPool from '../../database/getPool.js';
 import sendMailUtil from '../../util/sendMailUtil.js';
 
-
-import {emailAlReadyRegistratedError} from '../../services/errorService.js';
+import { emailAlReadyRegistratedError } from '../../services/errorService.js';
 
 const insertUserModel = async (email, password, registrationCode) => {
-    const pool = await getPool(); //con esto accede a la base de datos
+  const pool = await getPool(); //con esto accede a la base de datos
 
-    let  [user] = await pool.query(
-        `
+  let [user] = await pool.query(
+    `
             SELECT id FROM users WHERE email = ?
         `,
-        [email]
-    );
+    [email]
+  );
 
-    if(user.length){
-        emailAlReadyRegistratedError();
-    }
+  if (user.length) {
+    emailAlReadyRegistratedError();
+  }
 
-    const emailSubject = 'Activa tu usuario SHARE MY LINKS🔗';
+  const emailSubject = 'Activa tu usuario SHARE MY LINKS🔗';
 
-    const emailBody = `
+  const emailBody = `
             !Bienvenid@!
 
             Gracias por registrarte en Share my links. Para activar tu cuenta haz click en el siguiente enlace:
 
             <a href="${process.env.URL_FRONT}/activate/${registrationCode}">Activar mi cuenta</a> 
-    ` //insertamos html
+    `; //insertamos html
 
-    await sendMailUtil(email,emailSubject,emailBody);
+  await sendMailUtil(email, emailSubject, emailBody);
 
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-    const hashedPassword = await bcrypt.hash(password,10); 
-
-    await pool.query(
-        `
+  await pool.query(
+    `
             INSERT INTO users (email, password, registrationCode)
             VALUES (?,?,?)
         `,
-        [email, hashedPassword, registrationCode]
-    );
+    [email, hashedPassword, registrationCode]
+  );
+};
 
-    };
-
-    export default insertUserModel;
+export default insertUserModel;
