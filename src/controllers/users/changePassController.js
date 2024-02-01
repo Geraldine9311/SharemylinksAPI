@@ -1,4 +1,5 @@
 import getPool from '../../database/getPool.js';
+import bcrypt from 'bcrypt';
 
 const changePassController = async (req, res) => {
   try {
@@ -19,9 +20,11 @@ const changePassController = async (req, res) => {
     }
 
     // Actualizar la contraseña del usuario en la base de datos
+    //Traer el nuevo password encriptado
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
     await pool.query(
       'UPDATE users SET password = ? WHERE recoverPassCode = ? AND email = ?',
-      [newPassword, code, email]
+      [hashedPassword, code, email]
     );
 
     // Éxito al cambiar la contraseña
