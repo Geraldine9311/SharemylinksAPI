@@ -15,7 +15,7 @@ const selectLinksModel = async (userId, orderBy, orderDirection = 'DESC') => {
         AVG(IFNULL(v.value, 0)) AS average_vote,
         l.created_at
         FROM links l
-        LEFT JOIN linksvotes v ON v.link_id = l.id
+        LEFT JOIN linksVotes v ON v.link_id = l.id
         INNER JOIN users u ON u.id = l.user_id
         GROUP BY l.id
     `;

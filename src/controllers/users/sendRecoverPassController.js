@@ -9,6 +9,8 @@ const sendRecoverPassController = async (req, res, next) => {
     // Obtenemos el email de la persona que quiere recuperar su contraseña.
     const { email } = req.body;
 
+    console.log('Email recibido en sendRecoverPassController:', email);
+
     // Comprobamos si existe algún usuario con el email proporcionado.
     const user = await selectUserByEmailModel(email);
 
@@ -19,6 +21,8 @@ const sendRecoverPassController = async (req, res, next) => {
 
     // Generamos el código de recuperación de contraseña.
     const recoverPassCode = randomstring.generate(10);
+
+    console.log('Código de recuperación generado:', recoverPassCode);
 
     // Insertamos el código de recuperación de contraseña.
     await updateRecoverPassModel(email, recoverPassCode);

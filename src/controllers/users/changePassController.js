@@ -3,14 +3,19 @@ import bcrypt from 'bcrypt';
 
 const changePassController = async (req, res) => {
   try {
-    const { code, newPassword, email } = req.body;
+    const { email, newPassword, code } = req.body;
     const pool = await getPool();
+
+    console.log('Código de recuperación:', code);
+    console.log('Nueva contraseña:', newPassword);
 
     // Verificar que el código de recuperación sea válido
     const [user] = await pool.query(
       'SELECT * FROM users WHERE recoverPassCode = ? AND email = ?',
       [code, email]
     );
+
+    console.log('Usuario encontrado:', user);
 
     if (!user) {
       console.log('Código de recuperación no válido');
@@ -20,8 +25,11 @@ const changePassController = async (req, res) => {
     }
 
     // Actualizar la contraseña del usuario en la base de datos
-    //Traer el nuevo password encriptado
+    // Traer el nuevo password encriptado
     const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    console.log('Contraseña encriptada:', hashedPassword);
+
     await pool.query(
       'UPDATE users SET password = ? WHERE recoverPassCode = ? AND email = ?',
       [hashedPassword, code, email]
