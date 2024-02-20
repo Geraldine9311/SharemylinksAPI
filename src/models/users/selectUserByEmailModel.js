@@ -5,7 +5,7 @@ const selectUserByEmailModel = async (email) => {
 
   const [users] = await pool.query(
     `
-            SELECT id, password, recoverPassCode, active
+            SELECT id, password, recoverPassCode, active, email
             FROM users
             WHERE email = ?
         `,
